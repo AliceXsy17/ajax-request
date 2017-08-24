@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax封装实现</title>
+</head>
+<body>
+    <button onclick="show()">请求数据</button>
+    <script src="../dist/ajax.js"></script>
+    <script>
+        //-------------------------------------------
+        function show(){
+            // $Http.ajax({
+            //     url: 'https://api.douban.com/v2/movie/in_theaters',
+            //     type: 'get',
+            //     dataType: 'JSONP',
+            //     data:{count:2, start:2},
+            //     success: function (data) {
+            //         console.log(data);
+            //     }
+            // });
+
+            $Http.jsonp(
+                'https://api.douban.com/v2/movie/in_theaters',
+                'count=2&start=2',
+                function(data){
+                    console.log(data);
+                }
+            )
+        }
+
+        $Http.getJSON('./text.json',{name:'qqyiyi', age:18}, function(data){
+            console.log(data);  
+        })
+        $Http.getScript('./text.js',{name:'qqyiyi', age:18}, function(data){
+            console.log(data);  
+        })
+        $Http.getStyle('./text.css',{name:'qqyiyi', age:18}, function(data){
+            console.log(data);  
+        })
+    </script>
+</body>
+</html>
